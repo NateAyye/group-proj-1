@@ -2,11 +2,13 @@ button[aria-expanded='false'] + ul {
   visibility: hidden;
   display: none;
 }
+
 #primary-navigation li a {
   text-decoration: underline;
   font-weight: 700;
   color: #2757c7;
 }
+
 #primary-navigation li a:hover {
   text-underline-offset: 3px;
 }
@@ -22,7 +24,7 @@ button[aria-expanded='false'] + ul {
 }
 
 @media screen and (width > 768px) {
-  button[aria-expanded='true'] + ul {
+  button[aria-expanded='true'] + .primary-navigation {
     display: flex;
     gap: 1rem;
     background: transparent;

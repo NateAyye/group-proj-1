@@ -14,8 +14,7 @@ navButton.click(() => {
   }
 });
 
-$(window).resize(() => {
-  console.log(innerWidth);
+function setNavbarStyles() {
   if (innerWidth > 768) {
     navButton.attr('aria-expanded', 'true');
     navButton.hide();
@@ -23,4 +22,10 @@ $(window).resize(() => {
     navButton.attr('aria-expanded', 'false');
     navButton.show();
   }
+}
+
+$(window).resize(setNavbarStyles);
+
+$(() => {
+  setNavbarStyles();
 });
