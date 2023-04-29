@@ -13,22 +13,16 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              clifford: '#da373d',
-            },
-          },
-        },
-      };
-    </script>
-
     <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/slider.css" />
+    <link rel="stylesheet" href="assets/css/recipePage.css" />
     <link rel="stylesheet" href="assets/css/nav.css" />
 
+    <script src="assets/scripts/recipeData.js" defer></script>
+
+    <script src="assets/scripts/slider.js" defer></script>
     <script src="assets/scripts/navbar.js" defer></script>
+    <script src="assets/scripts/home.js" defer></script>
 
     <title>Test Group Proj</title>
   </head>
@@ -112,7 +106,7 @@
         </button>
         <ul
           aria-labelledby="nav-title"
-          class="primary-navigation absolute text-gray-800 bg-gray-300 inset-y-0 right-0 left-3/4 md:relative md:left-0"
+          class="primary-navigation flex flex-col pt-20 gap-1 text-center absolute z-50 text-gray-800 bg-gray-200 shadow-xl md:shadow-none inset-y-0 right-0 left-3/4 md:relative md:left-0 md:pt-0 md:flex-row"
           id="primary-navigation"
         >
           <button
@@ -123,16 +117,305 @@
             &times;
           </button>
           <p id="nav-title" class="sr-only">Site Navigation</p>
-          <li class=""><a href="#">About</a></li>
-          <li class=""><a href="#">Help</a></li>
-          <li class=""><a href="#">Learn</a></li>
-          <li class=""><a href="./recipies.html">Recipies</a></li>
-          <li class=""><a href="#">Contact</a></li>
+          <li class=""><a href="#getting-started">Get Started</a></li>
+          <li class="">
+            <a href="./recipies.html">Recipies</a>
+          </li>
+          <li class=""><a href="#">My Mules</a></li>
+          <li class=""><a href="#">About Us</a></li>
         </ul>
       </nav>
     </header>
+    <section id="search-form-container">
+      <form>
+        <div class="flex p-1">
+          <div class="input-container flex flex-1 relative">
+            <input
+              class="flex-1 rounded-md bg-gray-200 py-2"
+              type="search"
+              placeholder="Search... Meal Name, comma seperated list of ingredients(eggs, chicken, flour, etc.) "
+            />
+          </div>
+          <button
+            class="px-3 py-1 bg-green-600 rounded-lg font-bold text-gray-50 mx-3"
+          >
+            Search
+          </button>
+        </div>
+        <div class="flex p-1 justify-evenly flex-wrap">
+          <select
+            id="diet"
+            name="diet"
+            class="h-full rounded-md border bg-sky-400/30 bg-none py-2 pl-4 pr-9 text-gray-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+          >
+            <option value="default">Diet</option>
+            <option value="gluten free">Gluten Free</option>
+            <option value="ketogenic">Ketogenic</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="lacto-vegetarian">Lacto-Vegetarian</option>
+            <option value="ovo-vegetarian">Ovo-Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="pescetarian">Pescetarian</option>
+            <option value="paleo">Paleo</option>
+            <option value="primal">Primal</option>
+            <option value="low fodmap">Low FODMAP</option>
+            <option value="whole30">Whole30</option>
+          </select>
+          <select
+            id="intolerances"
+            name="intolerances"
+            class="h-full rounded-md border bg-sky-400/30 bg-none py-2 pl-4 pr-9 text-gray-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+          >
+            <option value="default">Intolerances</option>
+            <option value="dairy">Dairy</option>
+            <option value="egg">Egg</option>
+            <option value="gluten">Gluten</option>
+            <option value="grain">Grain</option>
+            <option value="peanut">Peanut</option>
+            <option value="seafood">Seafood</option>
+            <option value="sesame">Sesame</option>
+            <option value="shellfish">Shellfish</option>
+            <option value="soy">Soy</option>
+            <option value="sulfite">Sulfite</option>
+            <option value="tree nut">Tree Nut</option>
+            <option value="wheat">Wheat</option>
+          </select>
+          <div class="flex">
+            <p
+              class="flex items-center pb-3 font-bold text-2xl"
+              id="calorie-label"
+            >
+              Calories:
+            </p>
+            <div class="slider-multithumb">
+              <svg role="none" class="slider-group" width="360" height="60">
+                <g aria-hidden="true" class="rail">
+                  <rect height="0" width="0"></rect>
+                </g>
+                <g aria-hidden="true" class="range">
+                  <rect height="0" width="0"></rect>
+                </g>
+                <g
+                  class="minimum"
+                  role="slider"
+                  tabindex="0"
+                  aria-valuemin="50"
+                  aria-valuenow="50"
+                  aria-valuemax="800"
+                  aria-label="Minimum Calories in a Recipe"
+                >
+                  <text class="value">0</text>
+                  <rect class="focus-ring" height="0" width="0"></rect>
+                  <polygon class="thumb" points="0,0 0,0"></polygon>
+                </g>
+                <g
+                  class="maximum"
+                  role="slider"
+                  tabindex="0"
+                  aria-valuemin="50"
+                  aria-valuenow="800"
+                  aria-valuemax="850"
+                  aria-label="Maximum Calories in a Recipe"
+                >
+                  <text class="value">0</text>
+                  <rect class="focus-ring" height="0" width="0"></rect>
+                  <polygon class="thumb" points="0,0 0,0"></polygon>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+    <div class="bg-white">
+      <div class="mx-auto max-w-7xl py-3 sm:px-6 lg:px-8">
+        <div
+          class="relative isolate overflow-hidden bg-lime-600/90 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0"
+        >
+          <svg
+            viewBox="0 0 1024 1024"
+            class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
+            aria-hidden="true"
+          >
+            <circle
+              cx="512"
+              cy="512"
+              r="512"
+              fill="url(#759c1415-0410-454c-8f7c-9a820de03641)"
+              fill-opacity="0.7"
+            />
+            <defs>
+              <radialgradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                <stop stop-color="#24acf2" />
+                <stop offset="1" stop-color="#24acf2" />
+              </radialgradient>
+            </defs>
+          </svg>
+          <div
+            class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left"
+          >
+            <h2
+              class="text-3xl font-bold tracking-tight text-white sm:text-4xl"
+            >
+              Boost your productivity.<br />Start using our app today.
+            </h2>
+            <p class="mt-6 text-lg leading-8 text-gray-200">
+              Let us Carry the burdon of planning out meals everyday. We have
+              all the recipes you'll ever need.
+            </p>
+            <div
+              class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start"
+            >
+              <a
+                href="#"
+                class="text-sm font-semibold leading-6 text-white hover:underline hover:text-gray-200"
+                >Learn more <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </div>
+          <div class="relative mt-16 h-80 lg:mt-8">
+            <img
+              class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
+              src="./assets/images/call-to-action.png"
+              alt="App screenshot"
+              width="1824"
+              height="1080"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
     <main>
-      <h1>Test</h1>
+      <div class="bg-white">
+        <div
+          class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
+        >
+          <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+            Popular Mule Meals
+          </h2>
+
+          <div
+            id="popular-recipes"
+            class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
+          >
+            <!-- <div class="group relative">
+              <div
+                class="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
+              >
+                <img
+                  src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+                  alt="Front of men&#039;s Basic Tee in black."
+                  class="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                />
+              </div>
+              <div class="mt-4 flex justify-between">
+                <div>
+                  <h3 class="text-sm text-gray-700">
+                    <a href="#">
+                      <span aria-hidden="true" class="absolute inset-0"></span>
+                      Basic Tee
+                    </a>
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-500">Black</p>
+                </div>
+                <p class="text-sm font-medium text-gray-900">$35</p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <section id="getting-started">
+        <div class="bg-white">
+          <div class="mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+            <h2
+              class="text-4xl text-center pb-10 font-bold tracking-tight text-gray-900"
+            >
+              Getting Started
+            </h2>
+            <div
+              id="started-steps"
+              class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-3 xl:gap-x-8 text-gray-50"
+            >
+              <div
+                class="flex flex-col gap-3 items-center h-min text-center p-6 rounded-lg bg-gradient-to-tr from-emerald-500 to-green-300"
+              >
+                <p class="font-bold text-4xl">Step</p>
+                <img
+                  alt="step 1 icon"
+                  width="40"
+                  height="40"
+                  src="./assets/images/step-1.png"
+                />
+                <div
+                  class="h-64 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-w-1 group-hover:opacity-75 lg:h-64"
+                >
+                  <img
+                    src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+                    alt="Front of men&#039;s Basic Tee in black."
+                    class=""
+                  />
+                </div>
+                <p class="text-lg font-semibold">
+                  First Thing When you Reach our site you are going to want to
+                  create a Mule within the My Mules Page in order to have
+                  somewhere to save your meals.
+                </p>
+              </div>
+              <div
+                class="flex flex-col gap-3 items-center h-min text-center p-6 rounded-lg bg-gradient-to-tr from-emerald-500 to-green-300"
+              >
+                <p class="font-bold text-4xl">Step</p>
+                <img
+                  alt="step 2 icon"
+                  width="40"
+                  height="40"
+                  src="./assets/images/step-2.png"
+                />
+                <div
+                  class="h-64 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-64"
+                >
+                  <img
+                    src="./assets/images/step-2-example.png"
+                    alt="Front of men&#039;s Basic Tee in black."
+                    class=""
+                  />
+                </div>
+                <p class="text-lg font-semibold">
+                  Now You can Search for meals (w/ a comma seperated list of
+                  ingredients(chicken, flour, potatos) or a common meal name(
+                  pasta, chicken, salad)) in the search bar found on either the
+                  home page or the Recipe Page.
+                </p>
+              </div>
+              <div
+                class="flex flex-col gap-3 items-center h-min text-center p-6 rounded-lg bg-gradient-to-tr from-emerald-500 to-green-300"
+              >
+                <p class="font-bold text-4xl">Step</p>
+                <img
+                  alt="step 3 icon"
+                  width="40"
+                  height="40"
+                  src="./assets/images/step-3.png"
+                />
+                <div
+                  class="h-64 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-64"
+                >
+                  <img
+                    src="./assets/images/step-3-example.png"
+                    alt="Front of men&#039;s Basic Tee in black."
+                    class=""
+                  />
+                </div>
+                <p class="text-lg font-semibold">
+                  Once You have found A meal You like You can click the '+ Add
+                  To Mule' Button and then select which Mule You'd Like to add
+                  the Recipe to.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>
