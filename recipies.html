@@ -13,23 +13,14 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              clifford: '#da373d',
-            },
-          },
-        },
-      };
-    </script>
-
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/nav.css" />
+    <link rel="stylesheet" href="assets/css/slider.css" />
+    <link rel="stylesheet" href="assets/css/recipePage.css" />
 
     <script src="assets/scripts/recipeData.js" defer></script>
 
+    <script src="assets/scripts/slider.js" defer></script>
     <script src="assets/scripts/navbar.js" defer></script>
     <script src="assets/scripts/recipie.js" defer></script>
 
@@ -102,7 +93,7 @@
         </svg>
       </a>
 
-      <h1 class="text-2xl font-semibold">Recipies</h1>
+      <h1 class="text-2xl font-semibold">Home</h1>
 
       <nav class="primary-navigation-container">
         <button
@@ -115,7 +106,7 @@
         </button>
         <ul
           aria-labelledby="nav-title"
-          class="primary-navigation absolute text-gray-800 bg-gray-300 inset-y-0 right-0 left-3/4 md:relative md:left-0"
+          class="primary-navigation flex flex-col pt-20 gap-1 text-center absolute z-50 text-gray-800 bg-gray-300 inset-y-0 right-0 left-3/4 md:relative md:left-0 md:pt-0 md:flex-row"
           id="primary-navigation"
         >
           <button
@@ -126,19 +117,120 @@
             &times;
           </button>
           <p id="nav-title" class="sr-only">Site Navigation</p>
-          <li class=""><a href="#">About</a></li>
-          <li class=""><a href="#">Help</a></li>
-          <li class=""><a href="#">Learn</a></li>
-          <li class="./recipies.html"><a href="#">Recipies</a></li>
-          <li class=""><a href="#">Contact</a></li>
+          <li class="">
+            <a href="./recipies.html">Recipies</a>
+          </li>
+          <li class=""><a href="#">My Mules</a></li>
+          <li class=""><a href="#">About Us</a></li>
         </ul>
       </nav>
     </header>
     <main>
+      <section id="search-form-container">
+        <form>
+          <div class="flex p-1">
+            <div class="input-container flex flex-1 relative">
+              <input
+                class="flex-1 rounded-md bg-gray-200 py-2"
+                type="search"
+                placeholder="Search... Meal Name, comma seperated list of ingredients(eggs, chicken, flour, etc.) "
+              />
+            </div>
+            <button
+              class="px-3 py-1 bg-green-600 rounded-lg font-bold text-gray-50 mx-3"
+            >
+              Search
+            </button>
+          </div>
+          <div class="flex p-1 justify-evenly flex-wrap">
+            <select
+              id="diet"
+              name="diet"
+              class="h-full rounded-md border bg-sky-400/30 bg-none py-2 pl-4 pr-9 text-gray-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+            >
+              <option value="default">Diet</option>
+              <option value="gluten free">Gluten Free</option>
+              <option value="ketogenic">Ketogenic</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="lacto-vegetarian">Lacto-Vegetarian</option>
+              <option value="ovo-vegetarian">Ovo-Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="pescetarian">Pescetarian</option>
+              <option value="paleo">Paleo</option>
+              <option value="primal">Primal</option>
+              <option value="low fodmap">Low FODMAP</option>
+              <option value="whole30">Whole30</option>
+            </select>
+            <select
+              id="intolerances"
+              name="intolerances"
+              class="h-full rounded-md border bg-sky-400/30 bg-none py-2 pl-4 pr-9 text-gray-600 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+            >
+              <option value="default">Intolerances</option>
+              <option value="dairy">Dairy</option>
+              <option value="egg">Egg</option>
+              <option value="gluten">Gluten</option>
+              <option value="grain">Grain</option>
+              <option value="peanut">Peanut</option>
+              <option value="seafood">Seafood</option>
+              <option value="sesame">Sesame</option>
+              <option value="shellfish">Shellfish</option>
+              <option value="soy">Soy</option>
+              <option value="sulfite">Sulfite</option>
+              <option value="tree nut">Tree Nut</option>
+              <option value="wheat">Wheat</option>
+            </select>
+            <div class="flex">
+              <p
+                class="flex items-center pb-3 font-bold text-2xl"
+                id="calorie-label"
+              >
+                Calories:
+              </p>
+              <div class="slider-multithumb">
+                <svg role="none" class="slider-group" width="360" height="60">
+                  <g aria-hidden="true" class="rail">
+                    <rect height="0" width="0"></rect>
+                  </g>
+                  <g aria-hidden="true" class="range">
+                    <rect height="0" width="0"></rect>
+                  </g>
+                  <g
+                    class="minimum"
+                    role="slider"
+                    tabindex="0"
+                    aria-valuemin="50"
+                    aria-valuenow="50"
+                    aria-valuemax="800"
+                    aria-label="Minimum Calories in a Recipe"
+                  >
+                    <text class="value">0</text>
+                    <rect class="focus-ring" height="0" width="0"></rect>
+                    <polygon class="thumb" points="0,0 0,0"></polygon>
+                  </g>
+                  <g
+                    class="maximum"
+                    role="slider"
+                    tabindex="0"
+                    aria-valuemin="50"
+                    aria-valuenow="800"
+                    aria-valuemax="850"
+                    aria-label="Maximum Calories in a Recipe"
+                  >
+                    <text class="value">0</text>
+                    <rect class="focus-ring" height="0" width="0"></rect>
+                    <polygon class="thumb" points="0,0 0,0"></polygon>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
       <div id="recipe-list" class="py-5 px-10">
         <div class="flow-root">
           <ul role="list" class="flex flex-col gap-5">
-            <li class="flex py-6 p-5 bg-slate-200 rounded-lg">
+            <!-- <li class="flex py-6 p-5 bg-slate-200 rounded-lg">
               <div
                 class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
               >
@@ -177,10 +269,67 @@
                   </div>
                 </div>
               </div>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
     </main>
+    <div
+      class="hide-model-bg relative z-10 [&:not([aria-hidden='false'])]:hidden"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-hidden="true"
+      aria-modal="true"
+    >
+      <div
+        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+      ></div>
+
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div
+          class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0"
+        >
+          <div
+            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+          >
+            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div
+                  class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
+                >
+                  <img alt="Mule Icon" src="/assets/images/mule-icon.png" />
+                </div>
+                <div
+                  class="mt-3 flex-1 text-center sm:ml-4 sm:mt-0 sm:text-left"
+                >
+                  <h3
+                    class="text-xl font-semibold leading-6 text-center text-gray-900"
+                    id="modal-title"
+                  >
+                    My Mules
+                  </h3>
+                  <div class="mt-2 bg-gray-300 min-h-24 p-4">
+                    <p class="text-sm text-gray-500">
+                      Grab the saved Meals In the local Storage
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+            >
+              <button
+                id="close-modal-btn"
+                type="button"
+                class="inline-flex w-full justify-center rounded-md bg-sky-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-700 sm:ml-3 sm:w-auto"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

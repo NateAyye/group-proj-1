@@ -30,3 +30,17 @@ button[aria-expanded='false'] + ul {
     background: transparent;
   }
 }
+
+@media screen and (width < 768px) {
+  #primary-navigation li a {
+    display: block;
+
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.13);
+  }
+  #primary-navigation li a:hover {
+    background-color: rgba(0, 0, 0, 0.233);
+  }
+}
