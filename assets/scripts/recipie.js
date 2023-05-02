@@ -281,8 +281,8 @@ $(() => {
   if (params !== '') {
     console.log(params.slice(1, params.length));
     // fetchAndDisplayRecipes(baseUrl + params.slice(1, params.length));
-  } else {
-    // fetchRandomRecipies();
+  } else {console.log("anything")
+    //fetchRandomRecipies();
   }
 
   displayRecipe(testRecipe, params); // Comment out When Done Testing
