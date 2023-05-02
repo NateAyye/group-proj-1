@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./mymeals.css">
+    <link rel="stylesheet" href="./assets/css/nav.css">
+    <script src="https://kit.fontawesome.com/27530017d9.js" crossorigin="anonymous"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+    <title>Document</title>
+</head>
+<header>
+    <nav class="primary-navigation-container">
+        <button
+          class="text-xl border-white border-2 rounded py-1 px-2 hover:bg-slate-900/25 hover:border-slate-300"
+          aria-label="Site Navigation Menu"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          &#8801; Menu
+        </button>
+        <ul
+          aria-labelledby="nav-title"
+          class="primary-navigation absolute text-gray-800 bg-gray-300 inset-y-0 right-0 left-3/4 md:relative md:left-0"
+          id="primary-navigation"
+        >
+          <button
+            id="nav-exit"
+            aria-label="Exit Site Navigation"
+            class="absolute text-2xl leading-none right-2 top-1 hover:text-rose-600 md:hidden"
+          >
+            &times;
+          </button>
+          <p id="nav-title" class="sr-only">Site Navigation</p>
+          <li class=""><a href="#">About</a></li>
+          <li class=""><a href="#">Help</a></li>
+          <li class=""><a href="#">Learn</a></li>
+          <li class=""><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+</header>
+<body>
+<input class = "main-search-bar" id = "search-bar" type="text" placeholder="search">
+
+<a href="https://www.flaticon.com/free-icons/search" title="search icons" alt ="Search icons created by Royyan Wijaya - Flaticon"></a>
+
+<div class="my-meals">
+    <ul>
+        <li id = "meal1"></li>
+        <li></li>
+        <li></li>   
+    </ul>
+</div>
+
+
+
+
+    <script src= "./assets/scripts/navbar.js"></script>
+    <script src= "./mymeals.js"></script>
+</body>
+</html>
