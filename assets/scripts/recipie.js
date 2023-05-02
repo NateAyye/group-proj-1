@@ -73,6 +73,6 @@ function displayRecipe(recipe) {
 
 // On Page Load Grab All the Popular Recipies
 $(() => {
-  // fetchRandomRecipies();
+ fetchRandomRecipies();
   displayRecipe(testRecipe);
 });
