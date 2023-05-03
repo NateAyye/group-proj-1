@@ -1,0 +1,19 @@
+#search-form-container input {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+#search-form-container .input-container::after {
+  position: absolute;
+  content: '';
+  width: 90%;
+  height: 0.3ex;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #7777;
+}
+
+.badges span {
+  text-shadow: 1px 1px 3px #444;
+}

@@ -3,8 +3,11 @@
 const baseUrl =
   'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/';
 
-  function fetchRandomRecipies() {
-    const endpoint = baseUrl + 'random?number=15';
+  
+
+  function fetchRandomRecipies(id) {
+    
+    const endpoint = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`
   
     fetch(endpoint, {
       method: 'GET',
@@ -20,16 +23,30 @@ const baseUrl =
       .then((data) => {
         console.log(data);
 
-        document.querySelector("#dish-name").innerHTML = data.recipes[0].title
+        document.querySelector("#dish-name").innerHTML = data.title
+        document.querySelector("#dish-summary").innerHTML = data.summary
+        document.querySelector("#prep-time").innerHTML = data.readyInMinutes
+        document.querySelector("#health-score").innerHTML = data.healthScore
+        document.querySelector("#directions").innerHTML = data.instructions
+        document.querySelector("#food-image").src = data.image
+        let extendedIngredients = data.extendedIngredients.name
+    console.log(extendedIngredients)
+    for (let i = 0; i < extendedIngredients.length; i++){
+      document.querySelector("#ingredients") = extendedIngredients
+    }
+
+        
       });
   }
 
 
-    fetchRandomRecipies();
+  $(() => {
+    // fetchRandomRecipies(location.search.split("=")[1]);
+    // displayMealdetails(testRecipe);
+   location.search.split("=") 
+   
+  
+    console.log(location.search.split("="))
 
-   $(() => {
-    // fetchRandomRecipies();
-    displayMealdetails(testRecipe);
-    
   });
   
