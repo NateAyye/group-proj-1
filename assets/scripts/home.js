@@ -72,6 +72,7 @@ function fetchAndDisplayRecipes(endpoint, element) {
 function handleSearchButton(e) {
   e.preventDefault();
   const searchField = searchFormInput.val().trim();
+  if (!searchField) return;
   let query = searchField.includes(',') ? '' : 'complexSearch?';
   const intolerance = $('#intolerances').val();
   const diet = $('#diet').val();
@@ -117,7 +118,7 @@ function handleSearchButton(e) {
         : '&'
     }findByIngredients?ingredients=${apiIngredientParam}&number=15`;
 
-    location.replace(location.origin + '/recipies.html?' + query);
+    location.replace(location.origin + '/recipes.html?' + query);
   } else {
     console.log(query);
     query += `${
@@ -125,7 +126,7 @@ function handleSearchButton(e) {
         ? ''
         : '&'
     }query=${searchField}`;
-    location.replace(location.origin + '/recipies.html?' + query);
+    location.replace(location.origin + '/recipes.html?' + query);
   }
 }
 
