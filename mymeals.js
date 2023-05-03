@@ -38,6 +38,8 @@ function removeMule() {
     }
 };
     removeButton.addEventListener('click', removeMule)
+
+    
 //fetches meal information from localStorage and appends item to list
 function getMeal(){
     for (let i = 0; i < localStorage.length; i++) {
