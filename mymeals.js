@@ -11,17 +11,19 @@ var requestUrl = `https://api.spoonacular.com/food/menuItems`;
         })
         };
         */
-
 // creates mule based on user input, then keeps it in local storage.
 var createButton = document.getElementById('create-btn');
 function addMule() {
-    var name = document.getElementById('name').value;
-    console.log(name)
-    localStorage.setItem('name', name); // seems to overide previous n
-   
+    var mule = document.getElementById('name').value;
+    console.log(mule)
+    let mules = localStorage.getItem('mules');
+    let parseMules = mules ? JSON.parse(mules):[];
+    parseMules.push({name: mule,
+                    recipes: [],
+                    });
+    localStorage.setItem('mules', JSON.stringify(parseMules));
 }
     createButton.addEventListener('click', addMule);
-
 
 // removes mule meal from list and localStorage
 var removeButton = document.getElementById('remove-btn');
@@ -32,26 +34,22 @@ function removeMule() {
    
     if (userInput === muleEl) {
     muleEl.remove();
-    localStorage.removeItem('name')
+    localStorage.removeItem(muleEl);
     }
-}
+};
     removeButton.addEventListener('click', removeMule)
-
-
-
 //fetches meal information from localStorage and appends item to list
 function getMeal(){
     for (let i = 0; i < localStorage.length; i++) {
         var mealsArray = localStorage[i];
-        var meal = data.testRecipe.id;
+       // var meal = data.testRecipe.id;
     
         document.createElement('li');
-        document.getElementById('meal1').append(mealsArray);
+        document.getElementById('meal1').textContent = mealsArray;
     }
-
     //const meal = localStorage.getItem()
    
-    console.log(meal);
+    console.log(mealsArray);
 }
 
 

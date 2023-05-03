@@ -43,9 +43,6 @@ const testRecipe = {
           metric: {
             amount: 100,
             unitShort: 'g',
-            unitLong: 'grams',
-          },
-        },
       },
     ],
     id: 637016,
