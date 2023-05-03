@@ -1,6 +1,6 @@
 console.log('Youre in')
 
-const title = document.getElementById('dish-name')
+
 const testRecipe = {
     vegetarian: true,
     vegan: false,
