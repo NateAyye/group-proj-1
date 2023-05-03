@@ -22,9 +22,9 @@
 
     <script src="assets/scripts/slider.js" defer></script>
     <script src="assets/scripts/navbar.js" defer></script>
-    <script src="assets/scripts/recipie.js" defer></script>
+    <script src="assets/scripts/recipe.js" defer></script>
 
-    <title>Recipies - Meal Mule</title>
+    <title>Recipes - Meal Mule</title>
   </head>
   <body>
     <header
@@ -118,7 +118,7 @@
           </button>
           <p id="nav-title" class="sr-only">Site Navigation</p>
           <li class="">
-            <a href="./recipies.html">Recipies</a>
+            <a href="./recipes.html">Recipes</a>
           </li>
           <li class=""><a href="#">My Mules</a></li>
           <li class=""><a href="#">About Us</a></li>
@@ -247,7 +247,7 @@
                     class="flex justify-between text-base font-medium text-gray-900"
                   >
                     <h3 class="text-2xl">
-                      <a href="#">{Recipie Name}</a>
+                      <a href="#">{Recipe Name}</a>
                     </h3>
                     <p class="ml-4">Calories:</p>
                   </div>
@@ -308,11 +308,10 @@
                   >
                     My Mules
                   </h3>
-                  <div class="mt-2 bg-gray-300 min-h-24 p-4">
-                    <p class="text-sm text-gray-500">
-                      Grab the saved Meals In the local Storage
-                    </p>
-                  </div>
+                  <ul
+                    id="mules-list"
+                    class="mt-2 flex flex-col gap-3 bg-gray-300 min-h-24 p-4"
+                  ></ul>
                 </div>
               </div>
             </div>

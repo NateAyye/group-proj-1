@@ -45,7 +45,7 @@ const DIET_TYPES = {
 const baseUrl =
   'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/';
 
-function fetchRandomRecipies() {
+function fetchRandomRecipes() {
   const endpoint = baseUrl + 'random?number=15';
 
   fetch(endpoint, {
@@ -62,9 +62,9 @@ function fetchRandomRecipies() {
     .then((data) => {
       const recipes = data.recipes;
       for (let i = 0; i < recipes.length; i++) {
-        displayRecipe(recipes[i]);
+        displayRecipe(recipes[i], '');
       }
-      console.log(data);
+      refreshButtonEvents();
     });
 }
 
@@ -82,7 +82,7 @@ function createBadges(recipe) {
     innerHtml += `
     <span class="inline-flex items-center rounded-md bg-${
       DIET_TYPES[badges[i]]?.color || 'gray-600'
-    } px-2 py-1 text-[13px] font-medium text-gray-50  ring-1 ring-inset ring-gray-500/10">${
+    } px-2 py-1 text-[13px] shadow-inner  font-medium text-gray-50  ring-1 ring-inset ring-gray-500/10">${
       badges[i]
     }</span>
     `;
@@ -91,7 +91,6 @@ function createBadges(recipe) {
 }
 
 function displayRecipe(recipe, endpoint) {
-  console.log(endpoint);
   recipeList.prepend(`
     <li class="flex py-6 p-5 bg-slate-200 rounded-lg">
       <div
@@ -158,8 +157,8 @@ function displayRecipe(recipe, endpoint) {
   `);
 }
 
-function fetchAndDisplayRecipes(endpoint) {
-  fetch(endpoint, {
+function fetchAndDisplayRecipes1(endpoint) {
+  fetch(baseUrl + endpoint, {
     method: 'GET',
     headers: {
       'content-type': 'application/octet-stream',
@@ -173,7 +172,6 @@ function fetchAndDisplayRecipes(endpoint) {
     .then((data) => {
       recipeList.empty();
       const recipes = data;
-      console.log(data);
       for (let i = 0; i < recipes.length; i++) {
         displayRecipe(recipes[i], endpoint);
       }
@@ -181,9 +179,65 @@ function fetchAndDisplayRecipes(endpoint) {
     });
 }
 
+async function fetchAndDisplayRecipesById(id) {
+  const endpoint = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`;
+  const recipe = fetch(endpoint, {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': 'b681d02421mshdf8c1da87759638p16c1fajsn5f6f4a0059e9',
+      'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+    },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      const recipe = data;
+      return `
+      <li class="flex py-6 p-5 bg-slate-200 rounded-lg">
+      <div
+        class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
+      >
+        <img 
+          src="${recipe.image}"
+          alt="${
+            recipe.summary
+              ? recipe.summary.slice(0, 30)
+              : 'No Summary Data To Display Sorry'
+          }"
+          class="h-full w-full object-cover object-center"
+        />
+      </div>
+      <div class=" ml-4 flex flex-1 flex-col">
+        <div>
+            <div class="badges">
+            ${
+              endpoint.includes('findByIngredients') ? '' : createBadges(recipe)
+            }
+            </div>
+          <div
+            class="flex justify-between text-base font-medium text-gray-900"
+          >
+            <h3 class="text-2xl">
+              <a href="./mealdetails.html?id=${'' + recipe.id}">${
+        recipe.title
+      }</a>
+            </h3>
+            <p></p>
+        </div>
+      </div>
+    </li>
+      `;
+    });
+
+  return await recipe;
+}
+
 function handleRecipeSearch(e) {
   e.preventDefault();
   const searchField = searchFormInput.val().trim();
+  if (!searchField) return;
+
   let endpoint = baseUrl + searchField.includes(',') ? '' : 'complexSearch?';
   const intolerance = $('#intolerances').val();
   const diet = $('#diet').val();
@@ -192,7 +246,6 @@ function handleRecipeSearch(e) {
 
   if (searchField.includes(',')) {
     // Split the comma seperated list of ingredients into an array then map over each element in that array and trim its value to check for empty spaces then filter over that array to make sure someone didn't enter an empty value(comma at the end) then join the array back together into a string with the ',+' between them for the api to understand it.
-    console.log(endpoint.slice(endpoint.length - 1, endpoint.length));
     const apiIngredientParam = searchField
       .split(',')
       .map((val) => val.trim())
@@ -204,6 +257,8 @@ function handleRecipeSearch(e) {
         ? ''
         : '&'
     }findByIngredients?ingredients=${apiIngredientParam}&number=15`;
+    fetchAndDisplayRecipes1(endpoint);
+    return;
   } else {
     endpoint += `${
       endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
@@ -241,19 +296,12 @@ function handleRecipeSearch(e) {
     }minCalories=${calorieMin}`;
   }
 
-  if (searchField.includes(',')) {
-    fetchAndDisplayRecipes(endpoint);
-    return;
-  } else {
-    fetchAndDisplayRecipes(endpoint);
-    return;
-  }
+  fetchAndDisplayRecipes1(endpoint);
 }
 
 function handleModal(e) {
   const modalBackground = $('[role="dialog"]');
   const modalStateHidden = modalBackground.attr('aria-hidden') === 'true';
-  console.log(e.target.dataset.recipeId);
 
   if (!modalStateHidden) {
     modalBackground.attr('aria-hidden', 'true');
@@ -263,29 +311,45 @@ function handleModal(e) {
 }
 
 function refreshButtonEvents() {
-  const muleButtons = $('.add-to-mule-btn');
-  // console.log(muleButtons);
-  for (let i = 0; i < muleButtons.length; i++) {
-    muleButtons[i].removeEventListener('click', handleModal);
-  }
-  for (let i = 0; i < muleButtons.length; i++) {
-    muleButtons[i].addEventListener('click', handleModal);
-  }
+  $('.add-to-mule-btn').each((i, btn) => {
+    btn.removeEventListener('click', handleModal);
+  });
+  $('.add-to-mule-btn').each((i, btn) => {
+    btn.addEventListener('click', handleModal);
+  });
 }
 
-// On Page Load Grab All the Popular Recipies
+async function createMule(mule) {
+  $('#mules-list').prepend(`
+    <li class="p-3 bg-slate-500 rounded ">
+    <p class="text-2xl font " >${mule.name}</p>
+    <div>
+
+      ${
+        mule.recipes[0]
+          ? await fetchAndDisplayRecipesById(mule.recipes[0])
+          : 'No Recipes Yet'
+      }
+    </div>
+    </li>
+  `);
+}
+
+// On Page Load Grab All the Popular Recipes
 $(() => {
+  const muleMeals = localStorage.getItem('mules');
+  const parsedMules = muleMeals ? JSON.parse(muleMeals) : [];
+
   const params = location.search
     .replace('?diet=default&intolerances=default', '')
     .trim();
   if (params !== '') {
-    console.log(params.slice(1, params.length));
-    // fetchAndDisplayRecipes(baseUrl + params.slice(1, params.length));
+    // fetchAndDisplayRecipes1(baseUrl + params.slice(1, params.length));
   } else {
-    // fetchRandomRecipies();
+    // fetchRandomRecipes(); // Comment out When Done Testing
   }
 
-  displayRecipe(testRecipe, params); // Comment out When Done Testing
+  displayRecipe(testRecipe, params);
 
   refreshButtonEvents();
 
@@ -299,5 +363,9 @@ $(() => {
 
   $('#close-modal-btn').click(() => {
     modalBG.attr('aria-hidden', 'true');
+  });
+
+  parsedMules.forEach((mule) => {
+    createMule(mule);
   });
 });
