@@ -6,11 +6,12 @@ button[aria-expanded='false'] + ul {
 #primary-navigation li a {
   text-decoration: underline;
   font-weight: 700;
-  color: #2757c7;
+  color: #3295e6;
+  /* text-shadow: 1px 0 #fff2, 0 1px #fff2, -1px 0 #fff2, 0 -1px #fff2; */
 }
 
 #primary-navigation li a:hover {
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 }
 
 .sr-only {
