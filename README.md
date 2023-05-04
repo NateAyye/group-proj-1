@@ -1,4 +1,4 @@
-# <Your-Project-Title>
+# Meal Mule
 
 ## Description
 
