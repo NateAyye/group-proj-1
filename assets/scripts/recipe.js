@@ -2,6 +2,7 @@ const recipeList = $('#recipe-list ul');
 const searchFormInput = $('#search-form-container input');
 const searchFormButton = $('#search-form-container button');
 const modalBG = $('[role="dialog"]');
+let currentRecipeId = '';
 
 const DIET_TYPES = {
   vegetarian: {
@@ -92,7 +93,7 @@ function createBadges(recipe) {
 
 function displayRecipe(recipe, endpoint) {
   recipeList.prepend(`
-    <li class="flex py-6 p-5 bg-slate-200 rounded-lg">
+    <li class="flex flex-col items-center py-6 p-0 bg-slate-200 rounded-lg sm:w-full md:p-5 sm:flex-row">
       <div
         class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
       >
@@ -106,7 +107,7 @@ function displayRecipe(recipe, endpoint) {
           class="h-full w-full object-cover object-center"
         />
       </div>
-      <div class=" ml-4 flex flex-1 flex-col">
+      <div class=" ml-4 flex flex-1 flex-col ">
         <div>
             <div class="badges">
             ${
@@ -114,9 +115,9 @@ function displayRecipe(recipe, endpoint) {
             }
             </div>
           <div
-            class="flex justify-between text-base font-medium text-gray-900"
+            class="flex justify-between  font-medium text-gray-900"
           >
-            <h3 class="text-2xl">
+            <h3 class="text-md lg:text-2xl">
               <a href="./mealdetails.html?id=${'' + recipe.id}">${
     recipe.title
   }</a>
@@ -300,6 +301,8 @@ function handleRecipeSearch(e) {
 }
 
 function handleModal(e) {
+  console.log(e.target.dataset.recipeId);
+  currentRecipeId = e.target.dataset.recipeId;
   const modalBackground = $('[role="dialog"]');
   const modalStateHidden = modalBackground.attr('aria-hidden') === 'true';
 
@@ -319,11 +322,15 @@ function refreshButtonEvents() {
   });
 }
 
-async function createMule(mule) {
-  $('#mules-list').prepend(`
-    <li class="p-3 bg-slate-500 rounded ">
-    <p class="text-2xl font " >${mule.name}</p>
-    <div>
+async function createMules(parsedMules) {
+  $('#mules-list').empty();
+
+  parsedMules.forEach(async (mule) => {
+    $('#mules-list').prepend(`
+    <li class="p-3 bg-slate-500 rounded flex flex-col ">
+    <button data-name='${mule.name}' class='add-to-mule'>
+    <p class="text-2xl pointer-events-none" >${mule.name}</p>
+    <div class=" pointer-events-none">
 
       ${
         mule.recipes[0]
@@ -331,8 +338,10 @@ async function createMule(mule) {
           : 'No Recipes Yet'
       }
     </div>
+    <button>
     </li>
   `);
+  });
 }
 
 // On Page Load Grab All the Popular Recipes
@@ -365,7 +374,20 @@ $(() => {
     modalBG.attr('aria-hidden', 'true');
   });
 
-  parsedMules.forEach((mule) => {
-    createMule(mule);
+  // createMules(parsedMules);
+
+  $('.add-to-mule').each((i, muleBtn) => {
+    muleBtn.addEventListener('click', (e) => {
+      console.log(muleBtn);
+
+      parsedMules.forEach((mule) => {
+        console.log(mule.name, e.target);
+        if (mule.name === e.target.dataset.name) {
+          mule.recipes.push('' + currentRecipeId);
+        }
+      });
+      localStorage.setItem('mules', JSON.stringify(parsedMules));
+      createMules(parsedMules);
+    });
   });
 });
