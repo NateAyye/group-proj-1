@@ -11,9 +11,13 @@ var requestUrl = `https://api.spoonacular.com/food/menuItems`;
         })
         };
         */
+
+//TO DO: list items must appear within a div container, 
+//and list ina column, rather than a row across the screen;
+//also the listed items delete when the page is refreshed
+
+
 // creates mule based on user input, then keeps it in local storage.
-
-
 var createButton = document.getElementById('create-btn');
 function addMule() {
     var mule = document.getElementById('name').value;
@@ -31,34 +35,24 @@ function addMule() {
     createButton.addEventListener('click', addMule);
 
 
+//displays user input (mule names) as a list in browser
 function displayMeal(parseMules){
-   for (let i = 0; i < parseMules.length; i++) {
-        const MEAL = parseMules[0].length -1;
-        var mealName = MEAL.name;
-        
+        const index = parseMules.length -1;
+        var mealName = parseMules[index].name;
+        console.log(index);
+
         mealEl = document.createElement("li");
+        mealEl.textContent = mealName;
+        document.getElementById('list-items').append(mealName);
+        };
 
-         mealEl.textContent = mealName;
-
-        document.getElementById('list-item').append(mealName);
-    // document.getElementById().append(recipe);
-        }
-
-       // document.getElementById('box1').textContent = mealName;
-       // document.getElementById('box2').textContent = recipe;
-
-
-       // document.createElement()
-        
-    };
-
-    /*
+    
 // removes mule meal from list and localStorage
 var removeButton = document.getElementById('remove-btn');
 
 function removeMule() {
     var userInput = window.prompt("name the mule you would like to remove");
-    var muleEl = document.getElementsById('box2'); 
+    var muleEl = document.getElementsById('list-items'); 
    
     if (userInput === muleEl) {
     alert("NO MULES WERE HARMED DURING REMOVAL...");
@@ -73,20 +67,4 @@ function removeMule() {
     };
 
     removeButton.addEventListener('click', removeMule)
-
-
-//fetches meal information from localStorage and appends item to list
-function getMeal(){
-    for (let i = 0; i < localStorage.length; i++) {
-        var mealsArray = localStorage[i];
-       // var meal = data.testRecipe.id;
-    
-        document.createElement('li');
-        document.getElementById('meal1').textContent = mealsArray;
-    }
-    //const meal = localStorage.getItem()
-   
-    console.log(mealsArray);
-}
-*/
 
