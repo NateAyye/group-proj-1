@@ -1,21 +1,14 @@
+.meals-box{
+    border-color: greenyellow;
+}
 
-/*
-#create-btn{
-    border: 2px solid black;
-    padding: 5px;
-    background-color:rgb(88, 183, 24);
-    color: black;
-    font-size:  16px;
-    cursor: pointer;
-    border-radius: 5px;
+button{
+
+    padding-left: 50px;
 }
-#remove-btn {
-    border: 2px solid black;
-    padding: 5px;
-    background-color: rgb(223, 32, 57);
-    color: black;
-    font-size:  16px;
-    cursor: pointer;
-    border-radius: 5px;
+
+h1{
+    text-align: center;
+    font-weight:bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-*/
