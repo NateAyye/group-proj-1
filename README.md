@@ -1,12 +1,14 @@
-# <Your-Project-Title>
+MEAL MULE APPLICATION
 
 ## Description
 
 Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 
 - What was your motivation?
+
 - Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
 - What problem does it solve?
+Admittedly, many applications exist that track meals, diets, and provide recipes, however most do not have mules. Whilst mule may be a marketing shtick, shitcks garner attention, and are useful. To wit: mules carry what are essential. We all have favorite meals, and often stick to them, and once and awhile add a new culinary exoticism to your personal staples. The latter is where Meal Mule comes in
 - What did you learn?
 
 ## Table of Contents (Optional)
