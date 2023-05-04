@@ -326,17 +326,19 @@ async function createMules(parsedMules) {
   $('#mules-list').empty();
 
   parsedMules.forEach(async (mule) => {
+    let recipes = ``;
+
+    mule.recipes?.forEach(async (recipe) => {
+      recipes += await fetchAndDisplayRecipesById(recipe);
+    });
+
     $('#mules-list').prepend(`
     <li class="p-3 bg-slate-500 rounded flex flex-col ">
     <button data-name='${mule.name}' class='add-to-mule'>
     <p class="text-2xl pointer-events-none" >${mule.name}</p>
     <div class=" pointer-events-none">
 
-      ${
-        mule.recipes[0]
-          ? await fetchAndDisplayRecipesById(mule.recipes[0])
-          : 'No Recipes Yet'
-      }
+      ${mule.recipes[0] ? await fetchAndDisplayRecipesById(mule.recipe) : 'No Recipes Yet'}
     </div>
     <button>
     </li>
@@ -353,12 +355,10 @@ $(() => {
     .replace('?diet=default&intolerances=default', '')
     .trim();
   if (params !== '') {
-    // fetchAndDisplayRecipes1(baseUrl + params.slice(1, params.length));
+    fetchAndDisplayRecipes1(baseUrl + params.slice(1, params.length));
   } else {
-    // fetchRandomRecipes(); // Comment out When Done Testing
+    fetchRandomRecipes(); // Comment out When Done Testing
   }
-
-  displayRecipe(testRecipe, params);
 
   refreshButtonEvents();
 
@@ -374,7 +374,7 @@ $(() => {
     modalBG.attr('aria-hidden', 'true');
   });
 
-  // createMules(parsedMules);
+  createMules(parsedMules);
 
   $('.add-to-mule').each((i, muleBtn) => {
     muleBtn.addEventListener('click', (e) => {
