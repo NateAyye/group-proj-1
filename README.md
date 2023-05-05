@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-MEAL MULE APPLICATION
-=======
+
 # Meal Mule
->>>>>>> d37fb3fdcb2947773a4116658ab3f0e07119e806
 
 ## Description
 Admittedly, many applications exist that track meals, diets, and provide recipes, however most do not have mules. Whilst mules may be a marketing shtick, shitcks garner attention, but are also useful. To wit: mules carry what are essential. We all have favorite meals, and avidly repeat them for lack of creativity, but once and awhile a new culinary exoticism is introduced that becomes a new go-to in your kitchen. This is where Meal Mule comes in. We  analyze your diet, BMI, and preferance for ingredients and calorie intake, then suggest meals/recipes tailered to your preferences. You can easily "pack your mule" with these new meals/recipes and add it to your culinary and dietary journey, without the burden of research and planning. 
@@ -48,6 +44,3 @@ Refer to the repo file for licensing information.
 ## Features
 
 Users of Meal Mule can dynamically create weekly meal schedules (mules, packed with meals and recipes) according to their dietary restrictions and caloric requirements. Meal Mule in turn recommends popular meals that you may enjoy and add to your meal. We inclluded a meal details feature that gives step-by-step instructions on how to cook all your meals, because, most importantly, impress your friends with your culinary acumen.
-=======
-MEAL MULE APPLICATION
->>>>>>> 6306b0b6211a545d0afe17c7be63c84d260e2114
