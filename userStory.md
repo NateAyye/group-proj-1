@@ -36,7 +36,9 @@ WHEN the user selects a meal plan the current meal is added to localStorage tied
 ```
 WHEN a user opens the site 
 
-THEN they are presented with a popup asking for their weight and diet.
+THEN they are presented with a popup asking for their age, height, and weight to get a better understanding of their current diet/health.
 
-THEN they are presented with the home page with search bar section to immediatly start searching meals then right bellow we have hero section with an example of out products use and 
+THEN they are presented with the home page with search bar section to immediatly start searching meals then right bellow we have hero section with an example of how to use the websited.
+
+
 ```
