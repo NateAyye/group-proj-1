@@ -111,7 +111,7 @@ function displayRecipe(recipe, endpoint) {
         <div>
             <div class="badges">
             ${
-              endpoint.includes('findByIngredients') ? '' : createBadges(recipe)
+              endpoint.contains('findByIngredients') ? '' : createBadges(recipe)
             }
             </div>
           <div
@@ -172,7 +172,8 @@ function fetchAndDisplayRecipes1(endpoint) {
     })
     .then((data) => {
       recipeList.empty();
-      const recipes = data;
+      const recipes = data.results ? data.results : data;
+      console.log(recipes);
       for (let i = 0; i < recipes.length; i++) {
         displayRecipe(recipes[i], endpoint);
       }
@@ -261,12 +262,14 @@ function handleRecipeSearch(e) {
     fetchAndDisplayRecipes1(endpoint);
     return;
   } else {
-    endpoint += `${
-      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
-      endpoint === ''
-        ? ''
-        : '&'
-    }query=${searchField}`;
+    endpoint +=
+      'complexSearch?' +
+      `${
+        endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
+        endpoint === ''
+          ? ''
+          : '&'
+      }query=${searchField}&`;
   }
 
   if (diet !== 'default') {
@@ -274,26 +277,17 @@ function handleRecipeSearch(e) {
   }
   if (intolerance !== 'default') {
     endpoint += `${
-      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
-      endpoint === ''
-        ? ''
-        : '&'
+      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ? '' : '&'
     }intolerances=${intolerance}`;
   }
   if (calorieMax !== '800') {
     endpoint += `${
-      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
-      endpoint === ''
-        ? ''
-        : '&'
+      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ? '' : '&'
     }maxCalories=${calorieMax}`;
   }
   if (calorieMin !== '50') {
     endpoint += `${
-      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
-      endpoint === ''
-        ? ''
-        : '&'
+      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ? '' : '&'
     }minCalories=${calorieMin}`;
   }
 
@@ -338,7 +332,11 @@ async function createMules(parsedMules) {
     <p class="text-2xl pointer-events-none" >${mule.name}</p>
     <div class=" pointer-events-none">
 
-      ${mule.recipes[0] ? await fetchAndDisplayRecipesById(mule.recipe) : 'No Recipes Yet'}
+      ${
+        mule.recipes[0]
+          ? await fetchAndDisplayRecipesById(mule.recipes[0])
+          : 'No Recipes Yet'
+      }
     </div>
     <button>
     </li>
