@@ -13,11 +13,17 @@ Installation is as easy as calling a mule, clone the repo, and open the files in
 ## Usage
 
 1.) When first using Meal Mule, You will first have to create and name a mule. Your mule acts as a pack for the meals of the week. Note: at any point you can delete your mule(s).
+
 ![Step 1](./assets/screenshots/home.png)
+
 2.) Once you have named your mule, you will need to select recipes from the recipe page, then "add them to your mule". You may select recipes based upone set criteria, i.e., BMI, Caroies, etc. The recipes page also has pre-packed recipe suggestions if you are want to try them.
+
 ![Step 2](./assets/screenshots/my-mules.png)
+
 3.) Once you have your mule packed, youn can saunter over to "Meal Details" to get step-by-step instructions for how to cook your meals.
+
 ![Step 3](./assets/screenshots/mealDetails.png)
+
 4.) If you would like to know more about the development team, visit our About Us page and get to know the mulers.
 
 ![Step 4](./assets/screenshots/about-us.png)
@@ -27,10 +33,10 @@ Provide instructions and examples for use. Include screenshots as needed.
 ## Credits
 
 Collaborators:
-Nathan Cuevas: https://github.com/NateAyye
-Diana L:
-Angel Garcia: https://github.com/angelg12345
-Aaron Styza: https://github.com/ajstyza
+Nathan Cuevas: [Github Profile](https://github.com/NateAyye)
+Diana L: [Github Profile](https://github.com/dianalukove)
+Angel Garcia: [Github Profile](https://github.com/angelg12345)
+Aaron Styza: [Github Profile](https://github.com/ajstyza)
 
 ## License
 
