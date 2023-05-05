@@ -1,37 +1,26 @@
+<<<<<<< HEAD
 MEAL MULE APPLICATION
+=======
+# Meal Mule
+>>>>>>> d37fb3fdcb2947773a4116658ab3f0e07119e806
 
 ## Description
+Admittedly, many applications exist that track meals, diets, and provide recipes, however most do not have mules. Whilst mules may be a marketing shtick, shitcks garner attention, but are also useful. To wit: mules carry what are essential. We all have favorite meals, and avidly repeat them for lack of creativity, but once and awhile a new culinary exoticism is introduced that becomes a new go-to in your kitchen. This is where Meal Mule comes in. We  analyze your diet, BMI, and preferance for ingredients and calorie intake, then suggest meals/recipes tailered to your preferences. You can easily "pack your mule" with these new meals/recipes and add it to your culinary and dietary journey, without the burden of research and planning. 
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+Developing Meal Mule challenged us to use unfamiliar applications, such as Adobe In-Design, Miro, and unique APIs, all whilst corralling the team toward a common goal. Planning, we found out, save a lot of development time. When multiple poeple work simulatenously on discrete portions of the same application, the potential for accidentally deviating conceptually from the common goal multiplies per person involves, so communication and regular team meetings are essential.
 
-- What was your motivation?
 
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-Admittedly, many applications exist that track meals, diets, and provide recipes, however most do not have mules. Whilst mule may be a marketing shtick, shitcks garner attention, and are useful. To wit: mules carry what are essential. We all have favorite meals, and often stick to them, and once and awhile add a new culinary exoticism to your personal staples. The latter is where Meal Mule comes in
-- What did you learn?
-
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
-- [](#)
-  - [Description](#description)
-  - [Table of Contents (Optional)](#table-of-contents-optional)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Credits](#credits)
-  - [License](#license)
-  - [Badges](#badges)
-  - [Features](#features)
-  - [How to Contribute](#how-to-contribute)
-  - [Tests](#tests)
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+Installation is as easy as calling a mule, clone the repo, and open the files in you preferred browser, then launch the site live.
 
 ## Usage
+
+1.) When first using Meal Mule, You will first have to create and name a mule. Your mule acts as a pack for the meals of the week. Note: at any point you can delete your mule(s).
+2.) Once you have named your mule, you will need to select recipes from the recipe page, then "add them to your mule". You may select recipes based upone set criteria, i.e., BMI, Caroies, etc. The recipes page also has pre-packed recipe suggestions if you are want to try them.
+3.) Once you have your mule packed, youn can saunter over to "Meal Details" to get step-by-step instructions for how to cook your meals.
+4.) If you would like to know more about the development team, visit our About Us page and get to know the mulers.
 
 Provide instructions and examples for use. Include screenshots as needed.
 
@@ -43,34 +32,19 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+Collaborators:
+Nathan Cuevas: https://github.com/NateAyye
+Diana L:
+Angel Garcia: https://github.com/angelg12345
+Aaron Styza: https://github.com/ajstyza
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
 
-If you followed tutorials, include links to those here as well.
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+Refer to the repo file for licensing information.
 
----
-
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
 
 ## Features
 
-If your project has a lot of features, list them here.
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+Users of Meal Mule can dynamically create weekly meal schedules (mules, packed with meals and recipes) according to their dietary restrictions and caloric requirements. Meal Mule in turn recommends popular meals that you may enjoy and add to your meal. We inclluded a meal details feature that gives step-by-step instructions on how to cook all your meals, because, most importantly, impress your friends with your culinary acumen.

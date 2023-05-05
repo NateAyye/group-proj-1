@@ -32,14 +32,14 @@ class SliderMultithumb {
 
     // Dimensions of the slider focus ring, thumb and rail
 
-    this.svgWidth = 340;
+    this.svgWidth = 240;
     this.svgHeight = 37;
 
     this.valueTop = 35;
     this.valueHeight = this.minSliderValueNode.getBoundingClientRect().height;
 
     this.railHeight = 6;
-    this.railWidth = 300;
+    this.railWidth = 200;
     this.railY = 10;
     this.railX = 10;
 
