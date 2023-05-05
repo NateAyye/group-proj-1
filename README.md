@@ -25,10 +25,10 @@ Provide instructions and examples for use. Include screenshots as needed.
 ## Credits
 
 Collaborators:
-Nathan Cuevas: https://github.com/NateAyye
-Diana L:
-Angel Garcia: https://github.com/angelg12345
-Aaron Styza: https://github.com/ajstyza
+Nathan Cuevas: [Github Profile](https://github.com/NateAyye)
+Diana L: [Github Profile](https://github.com/dianalukove)
+Angel Garcia: [Github Profile](https://github.com/angelg12345)
+Aaron Styza: [Github Profile](https://github.com/ajstyza)
 
 ## License
 
