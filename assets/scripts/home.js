@@ -131,7 +131,7 @@ function handleSearchButton(e) {
 }
 
 $(() => {
-  displayRecipe(testRecipe, pouplarRecipesContainer);
-  // fetchAndDisplayRecipes(popularRecipeEndpoint, pouplarRecipesContainer);
+  // displayRecipe(testRecipe, pouplarRecipesContainer);
+  fetchAndDisplayRecipes(popularRecipeEndpoint, pouplarRecipesContainer);
   searchFormButton.click(handleSearchButton);
 });

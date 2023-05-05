@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 MEAL MULE APPLICATION
 =======
 # Meal Mule
@@ -27,11 +28,10 @@ Provide instructions and examples for use. Include screenshots as needed.
 To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
     ```md
-    ![alt text](assets/images/screenshot.png)
+    ![alt text](./assets/screenshots)
     ```
 
 ## Credits
-
 Collaborators:
 Nathan Cuevas: https://github.com/NateAyye
 Diana L:
@@ -48,3 +48,6 @@ Refer to the repo file for licensing information.
 ## Features
 
 Users of Meal Mule can dynamically create weekly meal schedules (mules, packed with meals and recipes) according to their dietary restrictions and caloric requirements. Meal Mule in turn recommends popular meals that you may enjoy and add to your meal. We inclluded a meal details feature that gives step-by-step instructions on how to cook all your meals, because, most importantly, impress your friends with your culinary acumen.
+=======
+MEAL MULE APPLICATION
+>>>>>>> 6306b0b6211a545d0afe17c7be63c84d260e2114

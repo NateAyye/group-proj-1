@@ -111,7 +111,7 @@ function displayRecipe(recipe, endpoint) {
         <div>
             <div class="badges">
             ${
-              endpoint.includes('findByIngredients') ? '' : createBadges(recipe)
+              endpoint.contains('findByIngredients') ? '' : createBadges(recipe)
             }
             </div>
           <div
@@ -172,7 +172,8 @@ function fetchAndDisplayRecipes1(endpoint) {
     })
     .then((data) => {
       recipeList.empty();
-      const recipes = data;
+      const recipes = data.results ? data.results : data;
+      console.log(recipes);
       for (let i = 0; i < recipes.length; i++) {
         displayRecipe(recipes[i], endpoint);
       }
@@ -261,12 +262,14 @@ function handleRecipeSearch(e) {
     fetchAndDisplayRecipes1(endpoint);
     return;
   } else {
-    endpoint += `${
-      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
-      endpoint === ''
-        ? ''
-        : '&'
-    }query=${searchField}`;
+    endpoint +=
+      'complexSearch?' +
+      `${
+        endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
+        endpoint === ''
+          ? ''
+          : '&'
+      }query=${searchField}&`;
   }
 
   if (diet !== 'default') {
@@ -274,26 +277,17 @@ function handleRecipeSearch(e) {
   }
   if (intolerance !== 'default') {
     endpoint += `${
-      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
-      endpoint === ''
-        ? ''
-        : '&'
+      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ? '' : '&'
     }intolerances=${intolerance}`;
   }
   if (calorieMax !== '800') {
     endpoint += `${
-      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
-      endpoint === ''
-        ? ''
-        : '&'
+      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ? '' : '&'
     }maxCalories=${calorieMax}`;
   }
   if (calorieMin !== '50') {
     endpoint += `${
-      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ||
-      endpoint === ''
-        ? ''
-        : '&'
+      endpoint.slice(endpoint.length - 1, endpoint.length) === '?' ? '' : '&'
     }minCalories=${calorieMin}`;
   }
 
@@ -326,6 +320,12 @@ async function createMules(parsedMules) {
   $('#mules-list').empty();
 
   parsedMules.forEach(async (mule) => {
+    let recipes = ``;
+
+    mule.recipes?.forEach(async (recipe) => {
+      recipes += await fetchAndDisplayRecipesById(recipe);
+    });
+
     $('#mules-list').prepend(`
     <li class="p-3 bg-slate-500 rounded flex flex-col ">
     <button data-name='${mule.name}' class='add-to-mule'>
@@ -353,12 +353,10 @@ $(() => {
     .replace('?diet=default&intolerances=default', '')
     .trim();
   if (params !== '') {
-    // fetchAndDisplayRecipes1(baseUrl + params.slice(1, params.length));
+    fetchAndDisplayRecipes1(baseUrl + params.slice(1, params.length));
   } else {
-    // fetchRandomRecipes(); // Comment out When Done Testing
+    fetchRandomRecipes(); // Comment out When Done Testing
   }
-
-  displayRecipe(testRecipe, params);
 
   refreshButtonEvents();
 
@@ -374,7 +372,7 @@ $(() => {
     modalBG.attr('aria-hidden', 'true');
   });
 
-  // createMules(parsedMules);
+  createMules(parsedMules);
 
   $('.add-to-mule').each((i, muleBtn) => {
     muleBtn.addEventListener('click', (e) => {

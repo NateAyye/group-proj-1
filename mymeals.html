@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./mymeals.css">
-    <link rel="stylesheet" href="./assets/css/nav.css">
-    <script src="https://kit.fontawesome.com/27530017d9.js" crossorigin="anonymous"></script>
-    <script>
-        tailwind.config = {
-          theme: {
-            extend: {
-              colors: {
-                clifford: '#da373d',
-              }
-            }
-          }
-        }
-      </script>
-        <script
-        src="https://code.jquery.com/jquery-3.6.4.js"
-        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
-        crossorigin="anonymous"
-      ></script>
-  
-    <title>Document</title>
-</head>
-<header>
-    <nav class="primary-navigation-container">
+    <link rel="stylesheet" href="./mymeals.css" />
+    <link rel="stylesheet" href="./assets/css/nav.css" />
+    <script
+      src="https://kit.fontawesome.com/27530017d9.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Meal Mule -</title>
+  </head>
+  <body>
+    <header
+      class="flex items-center justify-between bg-gradient-to-tr from-emerald-500 to-teal-500 p-3 text-white"
+    >
+      <a href="/" aria-label="Go to Home Page">
+        <img
+          width="40"
+          height="40"
+          alt="Mule Icon"
+          src="assets/images/mule.png"
+        />
+      </a>
+
+      <h1 class="text-2xl font-semibold">My Mules</h1>
+
+      <nav class="primary-navigation-container">
         <button
           class="text-xl border-white border-2 rounded py-1 px-2 hover:bg-slate-900/25 hover:border-slate-300"
           aria-label="Site Navigation Menu"
@@ -39,7 +46,7 @@
         </button>
         <ul
           aria-labelledby="nav-title"
-          class="primary-navigation absolute text-gray-800 bg-gray-300 inset-y-0 right-0 left-3/4 md:relative md:left-0"
+          class="primary-navigation flex flex-col pt-20 gap-1 text-center absolute z-50 text-gray-800 bg-gray-200 shadow-xl md:shadow-none inset-y-0 right-0 left-3/4 md:relative md:left-0 md:pt-0 md:flex-row"
           id="primary-navigation"
         >
           <button
@@ -50,47 +57,56 @@
             &times;
           </button>
           <p id="nav-title" class="sr-only">Site Navigation</p>
-          <li class=""><a href="#">About</a></li>
-          <li class=""><a href="#">Help</a></li>
-          <li class=""><a href="#">Learn</a></li>
-          <li class=""><a href="#">Contact</a></li>
+          <li class="">
+            <a href="./recipes.html">Recipes</a>
+          </li>
+          <li class=""><a href="./mymeals.html">My Mules</a></li>
+          <li class=""><a href="./meetteam/index.html">About Us</a></li>
         </ul>
       </nav>
+    </header>
 
+    <div class="my-meals-list">
       <div>
-          
+        <div class="mb-6">
+          <label
+            for="success"
+            class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
+            >Name Your Mule</label
+          >
+          <input
+            type="text"
+            id="name"
+            class="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500"
+            placeholder="Name Your Mule, E.G., Rupert, Then Call Your Mule With The Button Below"
+          />
+          <p class="mt-2 text-sm text-green-600 dark:text-green-500"></p>
+        </div>
+        <button
+          class="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full"
+          id="create-btn"
+        >
+          Call Mule
+        </button>
+
+        <button
+          class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full"
+          disabled
+          id="remove-btn"
+        >
+          Shoo Mule
+        </button>
       </div>
-</header>
-<body>
-
-
-
-<div class="my-meals-list">
-  <div>
-    <div class="mb-6">
-      <label for="success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Name Your Mule</label>
-      <input type="text" id="name" class="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500" placeholder="Name Your Mule, E.G., Rupert, Then Call Your Mule With The Button Below">
-      <p class="mt-2 text-sm text-green-600 dark:text-green-500"></p>
     </div>
-    <button class="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full" id="create-btn">Call Mule
-    </button>
-    <button><a href="recipes.html" class= "bg-yellow-400 hover:bg-yellow-600  text-white font-bold py-2 px-4 rounded-full" id ="go-to-recipe">Recipes Page
-    </button></a>
-    <button class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full" id ="remove-btn">Shoo Mule
-    </button>
-  </button>
-  
-</div>
-<br>
-<br>
-<h1>MULES BY THE WEEK</h1>
-<div class = "output">
-    <ul class="flex flex-col gap-5 "id ="meal-box">
-    </ul>
-<div>
-  
 
-    <script src= "./assets/scripts/navbar.js"></script>
-    <script src= "./mymeals.js"></script>
-</body>
+    <br />
+    <br />
+    <h1>MULES BY THE WEEK</h1>
+    <div class="output">
+      <ul class="flex flex-col gap-5" id="meal-box"></ul>
+    </div>
+
+    <script src="./assets/scripts/navbar.js"></script>
+    <script src="./mymeals.js"></script>
+  </body>
 </html>
