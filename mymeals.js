@@ -10,14 +10,12 @@ function addMule() {
 
     return;
   } else {
-    // console.log(mule)
     let mules = localStorage.getItem('mules');
     let parseMules = mules ? JSON.parse(mules) : [];
     parseMules.push({ name: mule, recipes: [] });
     localStorage.setItem('mules', JSON.stringify(parseMules));
     window.location.reload();
     //sessionStorage.setItem('mules', JSON.strongify(parseMules));
-    console.log(parseMules); //expect array in console
     //  displayMealContainer(parseMules);
   }
 }
@@ -81,7 +79,6 @@ async function createMules(parsedMules) {
       recipes += await fetchAndDisplayRecipesById(mule.recipes[i]);
     }
 
-
     $('#meal-box').prepend(`
           <li class="p-3 bg-slate-500 rounded flex flex-col ">
           <button data-name='${mule.name}' class='add-to-mule'>
@@ -114,7 +111,7 @@ function removeMule() {
 $(() => {
   createButton.addEventListener('click', addMule);
 
-  removeButton.addEventListener('click', removeMule);
+  // removeButton.addEventListener('click', removeMule);
 
   let mules = localStorage.getItem('mules');
   let parseMules = mules ? JSON.parse(mules) : [];

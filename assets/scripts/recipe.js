@@ -111,7 +111,7 @@ function displayRecipe(recipe, endpoint) {
         <div>
             <div class="badges">
             ${
-              endpoint.contains('findByIngredients') ? '' : createBadges(recipe)
+              endpoint.includes('findByIngredients') ? '' : createBadges(recipe)
             }
             </div>
           <div
@@ -173,7 +173,7 @@ function fetchAndDisplayRecipes1(endpoint) {
     .then((data) => {
       recipeList.empty();
       const recipes = data.results ? data.results : data;
-      console.log(recipes);
+      (recipes);
       for (let i = 0; i < recipes.length; i++) {
         displayRecipe(recipes[i], endpoint);
       }
@@ -295,7 +295,6 @@ function handleRecipeSearch(e) {
 }
 
 function handleModal(e) {
-  console.log(e.target.dataset.recipeId);
   currentRecipeId = e.target.dataset.recipeId;
   const modalBackground = $('[role="dialog"]');
   const modalStateHidden = modalBackground.attr('aria-hidden') === 'true';
@@ -376,10 +375,8 @@ $(() => {
 
   $('.add-to-mule').each((i, muleBtn) => {
     muleBtn.addEventListener('click', (e) => {
-      console.log(muleBtn);
 
       parsedMules.forEach((mule) => {
-        console.log(mule.name, e.target);
         if (mule.name === e.target.dataset.name) {
           mule.recipes.push('' + currentRecipeId);
         }

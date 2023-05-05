@@ -37,7 +37,6 @@ function displayRecipe(recipe, element) {
 
 function refreshButtonEvents() {
   const muleButtons = $('.add-to-mule-btn');
-  // console.log(muleButtons);
   for (let i = 0; i < muleButtons.length; i++) {
     muleButtons[i].removeEventListener('click', handleModal);
   }
@@ -61,7 +60,6 @@ function fetchAndDisplayRecipes(endpoint, element) {
     .then((data) => {
       element.empty();
       const recipes = data.results ?? data;
-      console.log(data);
       for (let i = 0; i < recipes.length; i++) {
         displayRecipe(recipes[i], element);
       }
@@ -120,7 +118,6 @@ function handleSearchButton(e) {
 
     location.replace(location.origin + '/recipes.html?' + query);
   } else {
-    console.log(query);
     query += `${
       query.slice(query.length - 1, query.length) === '?' || query === ''
         ? ''
