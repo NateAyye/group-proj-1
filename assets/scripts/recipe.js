@@ -173,7 +173,7 @@ function fetchAndDisplayRecipes1(endpoint) {
     .then((data) => {
       recipeList.empty();
       const recipes = data.results ? data.results : data;
-      (recipes);
+      recipes;
       for (let i = 0; i < recipes.length; i++) {
         displayRecipe(recipes[i], endpoint);
       }
@@ -198,7 +198,7 @@ async function fetchAndDisplayRecipesById(id) {
       return `
       <li class="flex py-6 p-5 bg-slate-200 rounded-lg">
       <div
-        class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
+        class="h-20 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
       >
         <img 
           src="${recipe.image}"
@@ -318,16 +318,10 @@ function refreshButtonEvents() {
 async function createMules(parsedMules) {
   $('#mules-list').empty();
 
-  parsedMules.forEach(async (mule) => {
-    let recipes = ``;
-
-    mule.recipes?.forEach(async (recipe) => {
-      recipes += await fetchAndDisplayRecipesById(recipe);
-    });
-
+  await parsedMules.forEach(async (mule) => {
     $('#mules-list').prepend(`
     <li class="p-3 bg-slate-500 rounded flex flex-col ">
-    <button data-name='${mule.name}' class='add-to-mule'>
+    <button data-name='${mule.name}' class='add-to-mules'>
     <p class="text-2xl pointer-events-none" >${mule.name}</p>
     <div class=" pointer-events-none">
 
@@ -340,6 +334,28 @@ async function createMules(parsedMules) {
     <button>
     </li>
   `);
+    resetMules(parsedMules);
+  });
+}
+
+function addMule(parsedMules, e) {
+  console.log(parsedMules);
+  parsedMules.forEach((mule) => {
+    if (mule.name === e.target.dataset.name) {
+      mule.recipes.push('' + currentRecipeId);
+    }
+  });
+  localStorage.setItem('mules', JSON.stringify(parsedMules));
+  createMules(parsedMules);
+}
+
+function resetMules(parsedMules) {
+  console.log('test');
+  $('.add-to-mules').each((i, muleBtn) => {
+    console.log(muleBtn);
+    muleBtn.addEventListener('click', (e) => {
+      addMule(parsedMules, e);
+    });
   });
 }
 
@@ -372,17 +388,14 @@ $(() => {
   });
 
   createMules(parsedMules);
-
-  $('.add-to-mule').each((i, muleBtn) => {
-    muleBtn.addEventListener('click', (e) => {
-
-      parsedMules.forEach((mule) => {
-        if (mule.name === e.target.dataset.name) {
-          mule.recipes.push('' + currentRecipeId);
-        }
-      });
-      localStorage.setItem('mules', JSON.stringify(parsedMules));
-      createMules(parsedMules);
+  $('.add-to-mules').each((i, muleBtn) => {
+    muleBtn.addEventListener('click', () => {
+      console.log(muleBtn);
+      console.log('test');
+      addMule(parsedMules, muleBtn);
     });
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    resetMules(parsedMules);
   });
 });
