@@ -17,7 +17,6 @@ function fetchRandomRecipies(id) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
 
       document.querySelector('#calories').innerHTML += data.calories;
       document.querySelector('#carbs').innerHTML += data.carbs;
@@ -28,8 +27,6 @@ function fetchRandomRecipies(id) {
       const ingredients = data.ingredients;
       for (let i = 0; i < ingredients.length; i++) {
         const ingredient = ingredients[i];
-        console.log(ingredient.name);
-        console.log(ingredient.amount);
         listHTML +=
           '<ul><li>' +
           ingredient.amount +
@@ -53,7 +50,6 @@ function fetchRandomRecipies(id) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
 
       document.querySelector('#dish-name').innerHTML = data.title;
       document.querySelector('#dish-summary').innerHTML = data.summary;

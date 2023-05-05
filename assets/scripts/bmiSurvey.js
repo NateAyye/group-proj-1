@@ -36,7 +36,6 @@ $(() => {
   }
 
   cancelBmiBtn.click(() => {
-    console.log(modalBackground);
     modalBackground.setAttribute('aria-hidden', 'true');
   });
 
@@ -60,7 +59,6 @@ $(() => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         if (data) {
           localStorage.setItem('bmi', JSON.stringify(data.data));
           modalBackground.setAttribute('aria-hidden', 'true');
